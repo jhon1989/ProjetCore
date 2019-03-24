@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ProjetCore.Logica.Models.ViewModel.ProjectsIndexViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Projects</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Title)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Details)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.ExpectedCompletionDate)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedCompletionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+    </tr>
+    }
+</table>
