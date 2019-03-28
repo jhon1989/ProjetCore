@@ -32,7 +32,7 @@ namespace ProjetCore.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-M9D2GPN\\SQLEXPRESS;Database=ProjectCore;User ID=UserProjectCore;Password=123456789");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-VLFAHPI\\SQLEXPRESS;Database=ProjectCore;User ID=UserProjectCore;Password=123456789");
             }
         }
 

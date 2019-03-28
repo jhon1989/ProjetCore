@@ -19,5 +19,8 @@ namespace ProjetCore.Logica.Models.ViewModel
         
         [Display(Name = "CreatedAt")]
         public DateTime? CreatedAt { get; set; }
+
+        [Display(Name = "UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
     }
 }

@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BL\" />
-    <Folder Include="Models\BindingModel\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ProjetCore.DAL\ProjetCore.DAL.csproj" />
   </ItemGroup>
 

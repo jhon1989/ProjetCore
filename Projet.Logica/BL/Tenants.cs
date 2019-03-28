@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+
+namespace ProjetCore.Logica.BL
+{
+    public class Tenants
+    {
+        /// <summary>
+        /// GET TENANTS
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        /// 
+
+
+        public List<Models.DB.Tenants> GetTenants(string userId)
+        {
+            DAL.Models.ProjetCoreContext _context = new DAL.Models.ProjetCoreContext();
+
+            var listTenants = (from _tenants in _context.Tenants
+                               join _aspNetUsers in _context.AspNetUsers on _tenants.Id equals _aspNetUsers.TenantId
+                               where _aspNetUsers.Id.Equals(userId)
+                               select new Models.DB.Tenants
+                               {
+                                   Id = _tenants.Id,
+                                   Name = _tenants.Name,
+                                   Plan = _tenants.Plan,
+                                   CreatedAt = _tenants.CreatedAt,
+                                   UpdatedAt = _tenants.CreatedAt,
+                               }).ToList();
+
+            return listTenants;
+        }
+    }
+}
