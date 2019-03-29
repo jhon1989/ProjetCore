@@ -6,28 +6,31 @@
 
 <h2>Projects</h2>
 
-@Html.ActionLink("Create", "Create", "Projects", null, new { @class = "btn btn-primery" })
+<div class="form-group">
+    @Html.ActionLink("Create", "Create", "Projects", null, new { @class = "btn btn-primary" })
+</div>
+
 
 <table class="table table-bordered">
     <tr>
-        <td>
+        <th>
             @Html.DisplayNameFor(model => model.Title)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Details)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ExpectedCompletionDate)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CreatedAt)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.UpdatedAt)
-        </td>
-        <td>
+        </th>
+        <th>
 
-        </td>
+        </th>
 
     </tr>
     @foreach (var item in Model)
@@ -51,7 +54,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", "Projects", new { id = item.Id }, new { @class = "btn btn-success" })
             @Html.ActionLink("Delete", "Delete", "Projects", new { id = item.Id }, new { @class = "btn btn-danger" })
-            @Html.ActionLink("Show", "Show", "Projects", new { id = item.Id }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Detail", "Detail", "Projects", new { id = item.Id }, new { @class = "btn btn-info" })
         </td>
        
     </tr>

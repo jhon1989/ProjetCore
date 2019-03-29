@@ -108,17 +108,19 @@ namespace ProjetCore.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Show(int id)
+        public IActionResult Detail(int id)
         {
             Logica.BL.Projects projects = new Logica.BL.Projects();
             var result = projects.GetProjects(id, null).FirstOrDefault();
 
-            var projectEditModel = new Logica.Models.BindingModel.ProjectEditBindingModel
+            var projectEditModel = new Logica.Models.ViewModel.ProjectsIndexViewModel
             {
                 Id = result.Id,
                 Details = result.Details,
                 Title = result.Title,
-                ExpectedCompletionDate = result.ExpectedCompletionDate.Value
+                ExpectedCompletionDate = result.ExpectedCompletionDate.Value,
+                CreatedAt = result.CreatedAt,
+                UpdatedAt = result.UpdatedAt
             };
 
             return View(projectEditModel);

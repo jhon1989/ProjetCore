@@ -1,0 +1,58 @@
+﻿@model ProjetCore.Logica.Models.ViewModel.ProjectsIndexViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>Detail</h2>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Title)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Details)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedCompletionDate)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.ExpectedCompletionDate)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </td>
+    </tr>
+</table>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.ActionLink("Back", "Index", "Projects", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
