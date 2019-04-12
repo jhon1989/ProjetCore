@@ -40,7 +40,7 @@ namespace ProjetCore.Controllers
                 UpdatedAt = x.UpdatedAt
             });
 
-            listProject = tenent.Plan.Equals("premium") ?
+            listProject = tenent.Plan.Equals("free") ?
                 listProject :
                 listProject.Take(1).ToList();
 

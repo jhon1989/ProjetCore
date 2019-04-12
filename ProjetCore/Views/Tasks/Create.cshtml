@@ -1,0 +1,102 @@
+﻿
+@model ProjetCore.Logica.Models.BindingModel.TaskCreateBindingModel
+
+@{
+    ViewData["Title"] = "create";
+}
+
+<h2>create</h2>
+
+<form action="/Tasks/Create" method="post">
+
+    @Html.HiddenFor(model => model.ProjectId)
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Title)
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Details)
+            @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Effort)
+            @Html.EditorFor(model => model.Effort, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Effort, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.ExpirationDate)
+            @Html.EditorFor(model => model.ExpirationDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExpirationDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.IsCompleted)
+            @Html.EditorFor(model => model.IsCompleted, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.IsCompleted, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.RemainingWork)
+            @Html.EditorFor(model => model.RemainingWork, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RemainingWork, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.Effort)
+            @Html.EditorFor(model => model.Effort, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Effort, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.StateId)
+            @Html.DropDownListFor(m => m.StateId, new SelectList(ViewBag.States, "Id", "Name"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Effort, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.PriorityId)
+            @Html.DropDownListFor(m => m.PriorityId, new SelectList(ViewBag.Priorities, "Id", "Name"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Effort, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.LabelFor(model => model.ActivityId)
+            @Html.DropDownListFor(m => m.ActivityId, new SelectList(ViewBag.Activities, "Id", "Name"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Effort, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Crear</button>
+            @Html.ActionLink("Back", "Index", "Tasks", null, new { @class = "btn btn-primery" })
+        </div>
+    </div>
+
+</form>
+

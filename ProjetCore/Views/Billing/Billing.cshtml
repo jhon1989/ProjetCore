@@ -1,0 +1,59 @@
+﻿@model ProjetCore.Logica.Models.ViewModel.BillinVieModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>Detail</h2>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.description)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.total)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.subtotal)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.subtotal)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.iva)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.iva)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.discount)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.discount)
+        </td>
+    </tr>
+
+</table>
+
+<div class="form-group">
+    <div class="col-md-12">
+        @Html.ActionLink("Back", "Index", "Projects", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+

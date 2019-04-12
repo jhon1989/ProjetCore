@@ -95,7 +95,7 @@ namespace ProjetCore.Areas.Identity.Pages.Account
 
                     #region Tenant
 
-                    var _context = new DAL.Models.ProjetCoreContext();
+                    var _context = new DAL.Models.ProjectCoreContext();
                     _context.Tenants.Add(new DAL.Models.Tenants
                     {
                         Name = Input.Organization,

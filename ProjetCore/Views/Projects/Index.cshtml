@@ -37,6 +37,9 @@
     {
     <tr>
         <td>
+            @Html.ActionLink("Tasks", "Index", "Tasks", new { id = item.Id }, new { @class = "btn btn-primary" })
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>

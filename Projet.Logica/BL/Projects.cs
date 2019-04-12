@@ -15,13 +15,11 @@ namespace ProjetCore.Logica.BL
         /// <param name="tenantId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        /// 
-
-
+        ///
         
         public List<Models.DB.Projects> GetProjects(int? id, int? tenantId, string userId = null)
         {
-            DAL.Models.ProjetCoreContext _context = new DAL.Models.ProjetCoreContext();
+            DAL.Models.ProjectCoreContext _context = new DAL.Models.ProjectCoreContext();
 
             var listProject = (from _project in _context.Projects select _project).ToList();
 
@@ -67,7 +65,7 @@ namespace ProjetCore.Logica.BL
         /// <param name="tenantId"></param>
         public void CreateProject(string title, string details, DateTime expectedCompletionDate, int? tenantId)
         {
-            DAL.Models.ProjetCoreContext _context = new DAL.Models.ProjetCoreContext();
+            DAL.Models.ProjectCoreContext _context = new DAL.Models.ProjectCoreContext();
 
             _context.Projects.Add(new DAL.Models.Projects
             {
@@ -84,7 +82,7 @@ namespace ProjetCore.Logica.BL
 
         public void UpdateProject(int id, string title, string details, DateTime expectedCompletionDate)
         {
-            DAL.Models.ProjetCoreContext _context = new DAL.Models.ProjetCoreContext();
+            DAL.Models.ProjectCoreContext _context = new DAL.Models.ProjectCoreContext();
             var proje = _context.Projects.Where(x => x.Id == id).FirstOrDefault();
 
             proje.Title = title;
@@ -97,7 +95,7 @@ namespace ProjetCore.Logica.BL
 
         public void DeleteProject(int id)
         {
-            DAL.Models.ProjetCoreContext _context = new DAL.Models.ProjetCoreContext();
+            DAL.Models.ProjectCoreContext _context = new DAL.Models.ProjectCoreContext();
             var proje = _context.Projects.Where(x => x.Id == id).FirstOrDefault();
         
             _context.Projects.Remove(proje);

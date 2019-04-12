@@ -4,17 +4,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ProjetCore.DAL.Models
 {
-    public partial class ProjetCoreContext : DbContext
+    public partial class ProjectCoreContext : DbContext
     {
-        public ProjetCoreContext()
+        public ProjectCoreContext()
         {
         }
 
-        public ProjetCoreContext(DbContextOptions<ProjetCoreContext> options)
+        public ProjectCoreContext(DbContextOptions<ProjectCoreContext> options)
             : base(options)
         {
         }
 
+        public virtual DbSet<Activities> Activities { get; set; }
         public virtual DbSet<Artifacts> Artifacts { get; set; }
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
@@ -24,7 +25,10 @@ namespace ProjetCore.DAL.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<Members> Members { get; set; }
+        public virtual DbSet<Priorities> Priorities { get; set; }
         public virtual DbSet<Projects> Projects { get; set; }
+        public virtual DbSet<States> States { get; set; }
+        public virtual DbSet<Tasks> Tasks { get; set; }
         public virtual DbSet<Tenants> Tenants { get; set; }
         public virtual DbSet<UserProjects> UserProjects { get; set; }
 
@@ -32,12 +36,20 @@ namespace ProjetCore.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-VLFAHPI\\SQLEXPRESS;Database=ProjectCore;User ID=UserProjectCore;Password=123456789");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-M9D2GPN\\SQLEXPRESS;Database=ProjectCore;User ID=UserProjectCore;Password=123456789");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Activities>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Artifacts>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
@@ -144,13 +156,15 @@ namespace ProjetCore.DAL.Models
 
                 entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 
+                entity.Property(e => e.TenantId).HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.UserName).HasMaxLength(256);
 
                 entity.HasOne(d => d.Tenant)
                     .WithMany(p => p.AspNetUsers)
                     .HasForeignKey(d => d.TenantId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__AspNetUse__Tenan__300424B4");
+                    .HasConstraintName("FK__AspNetUse__Tenan__693CA210");
             });
 
             modelBuilder.Entity<AspNetUserTokens>(entity =>
@@ -185,7 +199,14 @@ namespace ProjetCore.DAL.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Members)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Members__UserId__2F10007B");
+                    .HasConstraintName("FK__Members__UserId__68487DD7");
+            });
+
+            modelBuilder.Entity<Priorities>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Projects>(entity =>
@@ -208,6 +229,46 @@ namespace ProjetCore.DAL.Models
                     .WithMany(p => p.Projects)
                     .HasForeignKey(d => d.TenantId)
                     .HasConstraintName("FK_Projects_Tenants");
+            });
+
+            modelBuilder.Entity<States>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Tasks>(entity =>
+            {
+                entity.Property(e => e.Details)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ExpirationDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Activity)
+                    .WithMany(p => p.Tasks)
+                    .HasForeignKey(d => d.ActivityId)
+                    .HasConstraintName("FK_Tasks_Activities");
+
+                entity.HasOne(d => d.Priority)
+                    .WithMany(p => p.Tasks)
+                    .HasForeignKey(d => d.PriorityId)
+                    .HasConstraintName("FK_Tasks_Priorities");
+
+                entity.HasOne(d => d.Project)
+                    .WithMany(p => p.Tasks)
+                    .HasForeignKey(d => d.ProjectId)
+                    .HasConstraintName("FK_Tasks_Projects");
+
+                entity.HasOne(d => d.State)
+                    .WithMany(p => p.Tasks)
+                    .HasForeignKey(d => d.StateId)
+                    .HasConstraintName("FK_Tasks_States");
             });
 
             modelBuilder.Entity<Tenants>(entity =>
@@ -241,7 +302,7 @@ namespace ProjetCore.DAL.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserProjects)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__UserProje__UserI__2E1BDC42");
+                    .HasConstraintName("FK__UserProje__UserI__6754599E");
             });
         }
     }

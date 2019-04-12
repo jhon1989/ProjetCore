@@ -17,7 +17,7 @@ namespace ProjetCore.Logica.BL
 
         public List<Models.DB.Tenants> GetTenants(string userId)
         {
-            DAL.Models.ProjetCoreContext _context = new DAL.Models.ProjetCoreContext();
+            DAL.Models.ProjectCoreContext _context = new DAL.Models.ProjectCoreContext();
 
             var listTenants = (from _tenants in _context.Tenants
                                join _aspNetUsers in _context.AspNetUsers on _tenants.Id equals _aspNetUsers.TenantId
